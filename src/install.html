@@ -1,0 +1,97 @@
+<div class="page-head"><div class="wrap">
+  <h1>Install ODIN</h1>
+  <p>Two short guides: one if someone invited you to their server, one if you want to run your own.</p>
+  <div class="draft-banner">ODIN is in private beta. The app comes through Apple's TestFlight or a Google Play test link, and the server is not a public download yet. During the beta, your host or Outland Dynamics will give you what you need.</div>
+</div></div>
+<div class="wrap"><div class="prose">
+
+  <nav class="jump" aria-label="On this page">
+    <a href="#invited">I was invited</a>
+    <a href="#owner">I'm setting up a server</a>
+    <a href="#remote">Away from home</a>
+    <a href="#backups">Backups</a>
+    <a href="#updating">Updating</a>
+  </nav>
+
+  <h2 id="invited">I was invited to someone's server</h2>
+  <p>You need your phone, the email address the invitation was sent to, and about 15 minutes. You don't set up a server and you don't make an account with us.</p>
+  <ol class="steps">
+    <li><h3>Install the ODIN app</h3>
+      <p>During the beta, the person who invited you sends a link for the app. On iPhone it opens in Apple's TestFlight app; on Android it is a Google Play test link. ODIN needs iOS 16.4 or later, or Android 7.0 or later.</p></li>
+    <li><h3>Install Tailscale, if your host asks you to</h3>
+      <p>Tailscale is a free app from another company that privately connects your phone to your host's server when you're not on their Wi-Fi. Install it from the App Store or Google Play, sign in with your own account, and accept the share link your host sent. Leave it switched on whenever you use ODIN.</p></li>
+    <li><h3>Open the invitation</h3>
+      <p>Tap the link in the invitation message. It opens ODIN and fills in the server for you. If tapping does nothing, which is common in email apps, copy the link, open ODIN, paste it into the invitation box on the first screen and tap <strong>Continue</strong>.</p></li>
+    <li><h3>Sign up</h3>
+      <p>ODIN checks that it has reached the server that invited you. Then enter your first name, the email the invitation was sent to, and a password of at least 10 characters. You'll see the libraries that were shared with you.</p></li>
+  </ol>
+  <p class="note">An invitation works once and lasts 7 days. If it has expired, ask your host for a new one. If ODIN says the server's fingerprint does not match, stop and tell your host.</p>
+
+  <h2 id="owner">I'm setting up my own server</h2>
+  <p>The ODIN server runs on hardware you own and stays at home with your files. Setting it up takes some comfort with a NAS or a home computer: you'll edit one settings file and run one or two commands.</p>
+
+  <h3>What you need</h3>
+  <ul>
+    <li><strong>A machine that is always on</strong>, on your home network: a NAS or a Linux computer that runs Docker and Docker Compose. 2 GB of memory is enough for browsing and playing files as they are; converting video needs more processor power.</li>
+    <li><strong>Your media folders</strong> on that machine or its shares. ODIN reads them and never changes, moves or deletes your files.</li>
+    <li><strong>A fixed address for the machine</strong> on your home network (a DHCP reservation in your router), because your phones remember it.</li>
+    <li><strong>A phone with the ODIN app</strong> on the same Wi-Fi, and a computer with a web browser for the first-run page.</li>
+  </ul>
+  <p class="note"><strong>What has been tried so far.</strong> The beta server is built for Linux on Intel/AMD and 64-bit ARM processors. Windows is not supported as a server during the beta. Our written steps cover QNAP, Synology, Unraid and plain Linux, but not all of them have been run on real hardware yet; we'll help you through anything that doesn't match.</p>
+
+  <ol class="steps">
+    <li><h3>Get the server package</h3>
+      <p>The server is not publicly downloadable yet. During the beta, your host or Outland Dynamics will give you the server package: a Docker Compose file, a settings file, and access to the server software. <a href="support.html">Contact us</a> if you'd like to take part.</p></li>
+    <li><h3>Fill in the settings file</h3>
+      <p>Put both files in a folder of their own, not inside a media folder, and name the settings file <code>.env</code>. Open it in a text editor and fill in at least: a long random database password (letters and digits only), the path to your media folder, and the server's address on your network, which looks like <code>https://192.168.1.20:8788</code>. Keep this file private: it holds your passwords.</p></li>
+    <li><h3>Start the server</h3>
+      <p>On a NAS, install its container app first (Container Station on QNAP, Container Manager on Synology). Then, in the folder with the two files, run:</p>
+      <pre><code>docker compose up -d</code></pre>
+      <p>Within a minute or two the server and its database are running. Your media is attached read-only.</p></li>
+    <li><h3>Pair your phone</h3>
+      <p>On a computer on the same network, open <code>http://&lt;server address&gt;:8789</code> in a browser, for example <code>http://192.168.1.20:8789</code>. The page shows a short code that changes every 10 minutes. In the ODIN app, tap <strong>Setting up your own server?</strong>, choose your server, type the code and tap <strong>Connect</strong>. Your phone is now the server's owner, and the page never shows a code again.</p>
+      <p>On iPhone, finding the server on Wi-Fi isn't built yet: choose <strong>Enter address manually</strong> and type the server's address instead. Keep the setup page to yourself until you have paired.</p></li>
+    <li><h3>Add your libraries</h3>
+      <p>In the app, open the side menu and choose <strong>Libraries</strong>, then <strong>Add library</strong>. Pick the type (movies, TV, comics, music, ebooks or audiobooks), browse to the folder on the server, give it a name and tap <strong>Scan now</strong>. Removing a library later only forgets ODIN's records; it never touches your files.</p>
+      <p>TV shows and books get their details without any setup. For movie plots, cast and posters, add a free key of your own from OMDb to the settings file; without one, ODIN shows the posters already in your folders.</p></li>
+    <li><h3>Invite your people</h3>
+      <p>In the app, open <strong>Sharing</strong>, choose <strong>Invite someone</strong>, enter their email and pick the libraries they may see. If you've added your mailbox's sending details to the settings file, ODIN emails the invitation from your own mailbox; otherwise use <strong>Share the link</strong> and send it by text or chat. Everyone gets their own account, progress and ratings, and sees only what you shared.</p></li>
+  </ol>
+
+  <p class="note"><strong>Never forward ODIN's ports (8788 and 8789) on your router, and never turn on UPnP for them.</strong> ODIN is built to answer your home network only. To use it away from home, follow the next section.</p>
+
+  <h2 id="remote">Using ODIN away from home</h2>
+  <p>Out of the box, ODIN only answers phones on your home network. To watch from anywhere, use <a href="https://tailscale.com" rel="noopener">Tailscale</a>, a separate service with a free personal plan (check its current limits before you rely on it). It makes a private, encrypted link between your server and each phone. Nothing is opened on your router, and ODIN still isn't reachable from the public internet. Your media never passes through Outland Dynamics.</p>
+  <ol class="steps">
+    <li><h3>Install Tailscale on the server machine</h3>
+      <p>On QNAP and Synology it's in the NAS's app store; on Linux, follow Tailscale's own instructions. Sign in, note the machine's Tailscale address (it starts with <code>100.</code>), and turn off key expiry for it in Tailscale's admin console so it doesn't drop off every few months.</p></li>
+    <li><h3>Turn on remote access in ODIN</h3>
+      <p>In the settings file, set these two lines with your own address, then run <code>docker compose up -d</code> again:</p>
+      <pre><code>UMP_REMOTE=tailscale
+UMP_PUBLIC_URL=https://100.101.102.103:8788</code></pre>
+      <p>The second line is the address put into invitations, so invited people can reach the server from anywhere.</p></li>
+    <li><h3>Connect your own phone</h3>
+      <p>Install Tailscale on the phone and sign in with the same account. In ODIN, connect to the server's <code>100.</code> address. The app may ask you to confirm the server's fingerprint and pair again for the new address.</p></li>
+    <li><h3>Share only the server with family</h3>
+      <p>In Tailscale's admin console, share just the server machine with each person rather than inviting them into your whole network. They install Tailscale, sign in with their own account, accept the share, and then open your ODIN invitation as usual.</p></li>
+  </ol>
+
+  <h2 id="backups">Backups</h2>
+  <p>A backup is one file holding ODIN's database (libraries, accounts, progress, ratings, playlists) and the server's identity, so phones stay paired after a restore. Your media isn't part of it, because ODIN never writes there.</p>
+  <ul>
+    <li><strong>Take one now:</strong> <code>docker exec odin-server odin backup</code></li>
+    <li><strong>Every night:</strong> set a time in the settings file, for example <code>UMP_BACKUP_SCHEDULE=03:30</code>, and start the server again. ODIN keeps the newest 7 of each kind.</li>
+    <li><strong>Before every update</strong> that changes the database, the server takes a safety backup by itself. If that backup fails, it doesn't update and your data is unchanged.</li>
+    <li><strong>Copy backups off the machine</strong> regularly, to another computer or a USB disk. A backup on the same disk doesn't survive that disk failing.</li>
+  </ul>
+  <p>Backups contain the server's private key and password hashes. Keep them somewhere private, never in a media folder, and keep your own copy of the settings file too.</p>
+
+  <h2 id="updating">Updating the server</h2>
+  <p>During the beta, your host or Outland Dynamics will tell you when a new version is ready and how to get it. With access to the server software, an update is two commands in the folder with your settings file:</p>
+  <pre><code>docker compose pull
+docker compose up -d</code></pre>
+  <p>Your libraries, accounts, progress and settings stay. The server updates its own database when it starts, and your phones stay paired.</p>
+
+  <h2>Stuck?</h2>
+  <p>In the app, owners can open <strong>Server health</strong> from the side menu to see disk space, the database, backups and each library's last scan, with what to do about anything amber or red. <strong>Report a problem</strong> in About ODIN prepares a report without passwords or emails. Or write to us through <a href="support.html">Support</a>.</p>
+</div></div>

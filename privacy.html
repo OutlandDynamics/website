@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ODIN Privacy Policy · Outland Dynamics</title>
+<meta name="description" content="The privacy policy for the ODIN app and server.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-odin">
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="index.html">OUTLAND DYNAMICS</a>
+  <nav aria-label="Main"><a href="index.html">Home</a><a href="odin.html">ODIN</a><a href="install.html">Install</a><a href="support.html">Support</a><a href="privacy.html" aria-current="page">Privacy</a></nav>
+</div></header>
+<main>
+<div class="page-head"><div class="wrap">
+  <h1>ODIN privacy policy</h1>
+  <p>How the ODIN app and server handle your information.</p>
+  <div class="draft-banner">Draft for review: 4 items marked UNSURE need a decision before this page goes live.</div>
+</div></div>
+<div class="wrap"><article class="prose">
+<p>Last updated: <span class="unsure">UNSURE</span> (set the date when the owner publishes this).</p>
+<h2>The short version</h2>
+<ul>
+<li><strong>Outland Dynamics runs no servers for ODIN and collects nothing about you.</strong> We have no
+  accounts, no analytics, no advertising, no tracking and no crash-reporting service.</li>
+<li>The ODIN app talks to <strong>one place: the ODIN server you (or the person who invited you) run</strong>,
+  for example on a home NAS. Everything ODIN knows about you is stored on that server or on your
+  phone, not with us.</li>
+<li>That server may look up public information about your <strong>titles</strong> (show and movie names, book
+  titles and authors) from a few public catalogues, so it can show posters, summaries and cast.
+  It never sends your name, email, files, folder paths or viewing history. The server owner can
+  turn this off.</li>
+</ul>
+<h2>Who we are</h2>
+<p>ODIN is made by Outland Dynamics. You buy the app once through Apple's App Store or Google Play;
+the payment is handled by Apple or Google under their own privacy policies. We do not receive
+your card details.</p>
+<p>Contact: <a href="mailto:support@outlanddynamics.com">support@outlanddynamics.com</a> or <a href="support.html">our support page</a>.</p>
+<h2>What the app does with your data</h2>
+<p>The app connects only to the server address you type in, scan, or open from an invitation link.
+It keeps on your phone:</p>
+<ul>
+<li>the server address, and your sign-in for that server (a session key, stored in the phone's
+  secure storage: iOS Keychain or Android Keystore);</li>
+<li>your app settings and some personal lists kept only on the phone, for example book notes and
+  bookmarks, your watchlist, recent searches, reading goal and layout choices.</li>
+</ul>
+<p>Android backups of the app are turned off (<code>allowBackup: false</code>), so this data stays on the
+phone. <span class="unsure">UNSURE</span> on iPhone, app data may be included in your own iCloud or computer backup, as
+for most apps; we have not turned that off. Either way it goes to your own backup, not to us.</p>
+<p>The app has no analytics, advertising or crash-reporting code, and no third-party tracking SDKs.</p>
+<p>The phone does not contact any other site to show you pictures. TV show artwork (from TVmaze),
+movie posters and book covers are all fetched by your server and passed to the phone, so those
+sites never see your phone's internet address. Your server keeps copies in its own data folder
+(see below).</p>
+<p>If you tap a link in the app (for example "TVmaze", a book's source page, the install guide or
+this policy), it opens in your browser and that website's own privacy policy applies.</p>
+<h2>What your ODIN server stores</h2>
+<p>The server belongs to its owner, not to us. It keeps its data in its own database and data
+folder on the machine it runs on (typically two Docker volumes on a NAS), plus any backups the
+owner makes. We cannot see or reach it.</p>
+<p>It stores:</p>
+<ul>
+<li><strong>Accounts:</strong> the owner, and each invited person's first name, email address and password
+  (as a one-way scrypt hash, never the password itself).</li>
+<li><strong>Invitations:</strong> the invited email address, which libraries were shared, and when the
+  invitation was sent, accepted or cancelled. The invitation code is stored only as a hash.</li>
+<li><strong>Signed-in devices:</strong> a device name, when it signed in and was last used (the session key is
+  stored only as a hash).</li>
+<li><strong>Your activity, per person:</strong> watch and listening progress, ratings, reading status (want to
+  read, reading, read), TV playlists and comic reading orders.</li>
+<li><strong>Library information:</strong> the owner's library names, folder locations, and the catalogue the
+  server builds from the files (titles, years, episode lists, covers, posters and TV artwork it
+  downloaded, and so on).
+  Original media files are never changed.</li>
+<li><strong>Artwork from your own files:</strong> for movies and shows without online artwork, the server
+  reads poster images beside the media (such as <code>poster.jpg</code> or <code>folder.jpg</code>) and cover art
+  stored inside video files, and keeps resized copies in its data folder. This is read on the
+  server only; nothing about these files is sent anywhere.</li>
+<li><strong>Server logs:</strong> each request's method, path (without its query) and the device's network
+  address, written to the server's console log (for example <code>docker logs</code>). Sign-in keys are
+  removed from logs. How long logs are kept depends on the owner's Docker settings.</li>
+</ul>
+<p>Invited people see only the libraries shared with them. Other people can see an average rating
+only once at least three people have rated an item, so one person's exact score is not revealed.</p>
+<h2>How to delete your data</h2>
+<ul>
+<li><strong>Delete your account yourself.</strong> In the app: Home → <strong>Account</strong> → <strong>Delete my account</strong>,
+  enter your password and confirm. This deletes, on that server, at once and for good: your
+  sign-in (first name, email and password hash) and every device signed in with it, which
+  libraries you can see, your watch and listening progress, ratings, reading status, TV playlists,
+  the comic reading orders you made (people who follow them lose them too), any password reset
+  codes, and the invitations sent to your email address. The media and other people's data are
+  not touched. Nothing identifying you is kept.</li>
+<li><strong>Or ask the server owner</strong>, who can remove you in Sharing (<strong>Remove from server</strong>). That
+  deletes exactly the same data.</li>
+<li><strong>On your phone:</strong> notes, bookmarks, your watchlist and other lists kept only on the phone
+  are deleted when you delete the app.</li>
+<li>The <strong>server owner</strong> cannot delete their own account in the app; to remove ODIN and all its
+  data, they follow the install guide's Uninstall section.</li>
+<li><span class="unsure">UNSURE</span> copies in backups the owner already made, and lines in the server's console log,
+  are not removed by deleting an account; they go when the owner deletes or replaces those
+  backups and logs.</li>
+</ul>
+<h2>Who the server contacts</h2>
+<p>All of these are contacted by <strong>the server</strong>, not by Outland Dynamics, and only for information
+about titles. No personal data is sent: no names, emails, file names, folder paths, viewing
+history or device information. Requests are spaced out and use fixed addresses.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>What it is for</th>
+<th>What is sent</th>
+<th>On by default?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.tvmaze.com">TVmaze</a> (<code>api.tvmaze.com</code>, artwork from <code>static.tvmaze.com</code>)</td>
+<td>TV show details, episodes, cast, artwork</td>
+<td>The show title (as read from the folder name); for artwork, the image's address from TVmaze's own data</td>
+<td>Yes, for TV libraries. <code>UMP_METADATA=off</code> turns it off</td>
+</tr>
+<tr>
+<td><a href="https://www.omdbapi.com">OMDb</a> (<code>www.omdbapi.com</code>, <code>img.omdbapi.com</code>)</td>
+<td>Movie details, posters, ratings; TV series posters, episode ratings and episode titles TVmaze lacks</td>
+<td>A title and year, or an IMDb id, plus the owner's own OMDb key (or Poster API key)</td>
+<td><strong>No.</strong> Only if the owner adds their own <code>UMP_OMDB_API_KEY</code>. <code>UMP_METADATA=off</code> also turns it off</td>
+</tr>
+<tr>
+<td><a href="https://metron.cloud">Metron</a> (<code>metron.cloud</code>)</td>
+<td>Comic writer and artist credits for comics without ComicInfo.xml</td>
+<td>A comic series name and year, Metron's own ids and issue numbers, with the owner's own Metron account (API token, or username and password)</td>
+<td><strong>No.</strong> Only if the owner adds their own <code>UMP_METRON_TOKEN</code> (or username and password). <code>UMP_METADATA=off</code> also turns it off</td>
+</tr>
+<tr>
+<td><a href="https://openlibrary.org">Open Library</a> (<code>openlibrary.org</code>, <code>covers.openlibrary.org</code>, <code>archive.org</code>)</td>
+<td>Book details and covers</td>
+<td>A book title and author</td>
+<td>Yes, for book libraries. <code>UMP_METADATA=off</code> turns it off</td>
+</tr>
+<tr>
+<td><a href="https://books.google.com">Google Books</a> (<code>www.googleapis.com</code>, <code>books.google.com</code>)</td>
+<td>Book details and covers when Open Library has none</td>
+<td>A book title and author</td>
+<td>Yes, as above</td>
+</tr>
+<tr>
+<td>Audible's public catalogue (<code>api.audible.com</code>, covers from <code>m.media-amazon.com</code>)</td>
+<td>Audiobook narrators, length, series, covers</td>
+<td>A title and author</td>
+<td>Yes, for audiobook libraries, as above</td>
+</tr>
+</tbody>
+</table></div>
+<p>Each service sees the server's internet address, as any website would, and applies its own
+privacy policy. TVmaze's data is used under its CC BY-SA licence and credited in the app. So is
+Metron's (CC BY-SA 4.0): a series page that shows Metron's names says "via Metron", with a link.</p>
+<p><span class="unsure">UNSURE</span> Audible publishes no terms for its catalogue search; the owner should confirm it is
+acceptable to use before release.</p>
+<p><strong>Email.</strong> If the owner sets up email (<code>UMP_SMTP_*</code>), invitation emails are sent through the
+<strong>owner's own</strong> mail account (for example their Gmail). The invitation contains the server
+address and a one-time code. Without email set up, the owner sends the invitation by hand.</p>
+<p><strong>Video transcoding.</strong> If the owner wants transcoding, they download Cisco's OpenH264 library
+themselves and copy it to the server. The server does not download it or contact Cisco.</p>
+<p>The server does not contact Outland Dynamics for licences, updates or anything else.</p>
+<h2>Reporting a problem</h2>
+<p>"Report a problem" (in About ODIN) opens <strong>your own email app</strong> with a message you can read and
+edit before sending. It includes the app and server versions and your phone's operating system.
+For the server owner it also includes a diagnostics summary (disk space, backups, scans) without
+passwords, keys or email addresses. Nothing is sent unless you send that email yourself.</p>
+<h2>Children</h2>
+<p>ODIN is not directed at children under 13, and Outland Dynamics does not knowingly collect data
+from anyone, including children. Whether a child uses ODIN, and what media they can see, is up
+to the server owner and the child's parent or guardian.</p>
+<h2>Changes to this policy</h2>
+<p>If this policy changes, the new version will be published at the same address with a new date.
+The history of changes is kept in the project's repository.</p>
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="mailto:support@outlanddynamics.com">support@outlanddynamics.com</a>. Questions about
+your data on a particular ODIN server go to that server's owner.</p>
+</article></div>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <span>© 2026 Outland Dynamics LLC · Fort Collins, Colorado</span>
+  <nav aria-label="Footer"><a href="support.html">Support</a><a href="privacy.html" aria-current="page">Privacy policy</a></nav>
+</div></footer>
+</body>
+</html>
