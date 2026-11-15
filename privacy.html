@@ -20,7 +20,7 @@
 <div class="page-head"><div class="wrap">
   <h1>ODIN privacy policy</h1>
   <p>How the ODIN app and server handle your information.</p>
-  <div class="draft-banner">Draft for review: 3 items marked UNSURE need a decision before this page goes live.</div>
+  <div class="draft-banner">Draft for review: 2 items marked UNSURE need a decision before this page goes live.</div>
 </div></div>
 <div class="wrap"><article class="prose">
 <p>Effective date: (set on publication)</p>
@@ -38,9 +38,13 @@
   turn this off.</li>
 </ul>
 <h2>Who we are</h2>
-<p>ODIN is made by Outland Dynamics. You buy the app once through Apple's App Store or Google Play;
-the payment is handled by Apple or Google under their own privacy policies. We do not receive
-your card details.</p>
+<p>ODIN is made by Outland Dynamics. You subscribe (after a free trial), or buy lifetime access,
+through Apple's App Store or Google Play. The payment is handled by Apple or Google under their
+own privacy policies. We do not receive your card details, name or email.</p>
+<p>The app checks whether your subscription or purchase is active on your phone, by asking Apple or
+Google directly. It never sends that check to us, and your ODIN server never checks with us.
+Apple and Google give us sales and subscription reports (for example how many subscriptions
+there are, and in which countries), which do not identify you.</p>
 <p>Contact: support@outlanddynamics.com</p>
 <h2>What the app does with your data</h2>
 <p>The app connects only to the server address you type in, scan, or open from an invitation link.
@@ -216,10 +220,10 @@ history or device information. Requests are spaced out and use fixed addresses.<
 <p>Each service sees the server's internet address, as any website would, and applies its own
 privacy policy. TVmaze's data is used under its CC BY-SA licence and credited in the app. So is
 Metron's (CC BY-SA 4.0): a series page that shows Metron's names says "via Metron", with a link.</p>
-<p><strong><span class="unsure">UNSURE</span> (owner decision):</strong> Audible's catalogue search is not an official, documented service
-for other apps. Audible publishes no developer programme or terms that allow this use, and
-Audnexus serves data that comes from Audible. Whether ODIN keeps using them, and so whether these
-two rows stay in this policy, is undecided: see <code>docs/decisions/2026-11-11-audible-metadata.md</code>.</p>
+<p><strong>Audible and Audnexus:</strong> Audible's catalogue search is not an official, documented service
+for other apps. The owner decided (November 13, 2026, <code>docs/decisions/2026-11-12-local-first-metadata.md</code>)
+that both become a switch for the server's owner, off by default in the public release. Until
+that switch is built they are on, as the table says.</p>
 <p><strong>Email.</strong> If the owner sets up email (<code>UMP_SMTP_*</code>), invitation emails are sent through the
 <strong>owner's own</strong> mail account (for example their Gmail). The invitation contains the server
 address and a one-time code. Without email set up, the owner sends the invitation by hand.</p>
