@@ -20,14 +20,15 @@
 <div class="page-head"><div class="wrap">
   <h1>ODIN privacy policy</h1>
   <p>How the ODIN app and server handle your information.</p>
-  <div class="draft-banner">Draft for review: 4 items marked UNSURE need a decision before this page goes live.</div>
+  <div class="draft-banner">Draft for review: 3 items marked UNSURE need a decision before this page goes live.</div>
 </div></div>
 <div class="wrap"><article class="prose">
-<p>Last updated: <span class="unsure">UNSURE</span> (set the date when the owner publishes this).</p>
+<p>Effective date: (set on publication)</p>
 <h2>The short version</h2>
 <ul>
 <li><strong>Outland Dynamics runs no servers for ODIN and collects nothing about you.</strong> We have no
-  accounts, no analytics, no advertising, no tracking and no crash-reporting service.</li>
+  accounts, no analytics, no advertising, no tracking and no crash-reporting service. The only
+  thing we ever receive is an email you choose to send us (see "Reporting a problem").</li>
 <li>The ODIN app talks to <strong>one place: the ODIN server you (or the person who invited you) run</strong>,
   for example on a home NAS. Everything ODIN knows about you is stored on that server or on your
   phone, not with us.</li>
@@ -40,19 +41,41 @@
 <p>ODIN is made by Outland Dynamics. You buy the app once through Apple's App Store or Google Play;
 the payment is handled by Apple or Google under their own privacy policies. We do not receive
 your card details.</p>
-<p>Contact: <a href="mailto:support@outlanddynamics.com">support@outlanddynamics.com</a> or <a href="support.html">our support page</a>.</p>
+<p>Contact: support@outlanddynamics.com</p>
 <h2>What the app does with your data</h2>
 <p>The app connects only to the server address you type in, scan, or open from an invitation link.
 It keeps on your phone:</p>
 <ul>
-<li>the server address, and your sign-in for that server (a session key, stored in the phone's
-  secure storage: iOS Keychain or Android Keystore);</li>
-<li>your app settings and some personal lists kept only on the phone, for example book notes and
-  bookmarks, your watchlist, recent searches, reading goal and layout choices.</li>
+<li>your sign-in for that server (a session key) and the server's security fingerprint, in the
+  phone's secure storage (iOS Keychain or Android Keystore);</li>
+<li>in the app's ordinary storage: the server address, your app settings, some personal lists
+  kept only on the phone (for example book notes and bookmarks, your watchlist, recent searches,
+  reading goal and layout choices), and a copy of the last lists the server sent (titles and
+  file names), so screens open quickly.</li>
 </ul>
-<p>Android backups of the app are turned off (<code>allowBackup: false</code>), so this data stays on the
-phone. <span class="unsure">UNSURE</span> on iPhone, app data may be included in your own iCloud or computer backup, as
-for most apps; we have not turned that off. Either way it goes to your own backup, not to us.</p>
+<p>The app does not save films, music, books or comics on the phone.</p>
+<p><strong>Phone backups.</strong> Nothing here goes to us; a backup is your own, with Apple or Google or on
+your computer.</p>
+<ul>
+<li><strong>iPhone.</strong> The app's ordinary storage is left out of iCloud and computer backups (the
+  storage component the app uses excludes its folder from backups, and we have not changed
+  that). Your sign-in is saved in the Keychain as "this device only": Apple does not restore
+  such items onto a different phone, so on a new iPhone you sign in again and your phone-only
+  lists start empty. <span class="unsure">UNSURE</span> whether a direct iPhone-to-iPhone transfer (Quick Start) copies
+  the ordinary storage; not tested.</li>
+<li><strong>iPhone, after deleting the app.</strong> Deleting the app removes its ordinary storage. iOS can
+  keep Keychain items of a deleted app, so the saved sign-in and the server's fingerprint may
+  stay in the phone's Keychain, where no other app can read them. If you install ODIN again,
+  the first time it opens it deletes that leftover sign-in before using anything, so you sign
+  in again. An update of the app keeps your sign-in. Deleting the leftover on the phone does
+  not sign the device out on the server: to end that sign-in too, sign out in the app before
+  deleting it, or remove the device from the server's device list.</li>
+<li><strong>Android.</strong> The app's data is left out of Google's cloud backup and out of phone-to-phone
+  transfer when you set up a new phone (<code>allowBackup: false</code>, plus data-extraction rules that
+  exclude everything from both). On a new phone you sign in again, and your settings and
+  phone-only lists start empty. Deleting the app removes its storage and the key that protects
+  the saved sign-in.</li>
+</ul>
 <p>The app has no analytics, advertising or crash-reporting code, and no third-party tracking SDKs.</p>
 <p>The phone does not contact any other site to show you pictures. TV show artwork (from TVmaze),
 movie posters and book covers are all fetched by your server and passed to the phone, so those
@@ -82,9 +105,21 @@ owner makes. We cannot see or reach it.</p>
   reads poster images beside the media (such as <code>poster.jpg</code> or <code>folder.jpg</code>) and cover art
   stored inside video files, and keeps resized copies in its data folder. This is read on the
   server only; nothing about these files is sent anywhere.</li>
-<li><strong>Server logs:</strong> each request's method, path (without its query) and the device's network
-  address, written to the server's console log (for example <code>docker logs</code>). Sign-in keys are
-  removed from logs. How long logs are kept depends on the owner's Docker settings.</li>
+<li><strong>Audiobook details from your own files:</strong> the server reads the tags inside audiobook files
+  (.m4b, .m4a, .mp3: title, author, narrator, series, summary, year) and keeps them with the
+  book's information. When the book's first file holds a picture, that picture is its cover,
+  before any online one, and a resized copy is kept in the server's data folder. Online covers
+  are used only for books whose file has no picture. The files are only read, never
+  changed. Of the tags, only the title and author are sent anywhere, as search words (see
+  below).</li>
+<li><strong>Server logs:</strong> for each request, the time, the route (which kind of request it was), the
+  result code and the device's network (IP) address, written to the server's console log (for
+  example <code>docker logs</code>). Logs hold no names, email addresses, passwords, sign-in keys or
+  titles. With the install guide's set-up, Docker keeps at most about 30 MB
+  of log for each container (three 10 MB files) and drops the oldest lines as new ones arrive,
+  so how far back the log goes depends on how busy the server is, not on a set number of days.
+  The log is also deleted when the container is replaced, for example by an update. An owner
+  who runs the server another way has whatever log settings they chose.</li>
 </ul>
 <p>Invited people see only the libraries shared with them. Other people can see an average rating
 only once at least three people have rated an item, so one person's exact score is not revealed.</p>
@@ -103,9 +138,22 @@ only once at least three people have rated an item, so one person's exact score 
   are deleted when you delete the app.</li>
 <li>The <strong>server owner</strong> cannot delete their own account in the app; to remove ODIN and all its
   data, they follow the install guide's Uninstall section.</li>
-<li><span class="unsure">UNSURE</span> copies in backups the owner already made, and lines in the server's console log,
-  are not removed by deleting an account; they go when the owner deletes or replaces those
-  backups and logs.</li>
+<li><strong>Backups the owner already made still hold your data for a while.</strong> Deleting an account
+  removes it from the server's live database at once. It does not reach into backup files. A
+  backup taken before the deletion still contains your first name, email address, password hash
+  and activity. The server keeps the newest 7 backups of each kind (nightly, before an update,
+  made by hand, before a restore) and deletes older ones, so with nightly backups on, a nightly
+  copy is gone after about a week; the other kinds stay until 7 newer ones of that kind exist,
+  which can take much longer. Copies the owner moved elsewhere (another disk or computer) stay
+  until the owner deletes them. If the owner restores a backup from before your deletion, your
+  account comes back; ask the owner to delete it again. You can ask the owner to delete old
+  backups.</li>
+<li><strong>Logs</strong> do not contain your name or email address, so there is nothing of that kind to
+  remove. Lines with your device's network address stay until the log rolls over (see "Server
+  logs" above).</li>
+<li><span class="unsure">UNSURE</span> the database program (PostgreSQL) writes its own log, kept under the same 30 MB
+  limit. It normally records start-up and errors only; whether an error line can ever include
+  a value such as an email address has not been checked.</li>
 </ul>
 <h2>Who the server contacts</h2>
 <p>All of these are contacted by <strong>the server</strong>, not by Outland Dynamics, and only for information
@@ -142,28 +190,36 @@ history or device information. Requests are spaced out and use fixed addresses.<
 <tr>
 <td><a href="https://openlibrary.org">Open Library</a> (<code>openlibrary.org</code>, <code>covers.openlibrary.org</code>, <code>archive.org</code>)</td>
 <td>Book details and covers</td>
-<td>A book title and author</td>
+<td>A book title and author: from the book's own file where it has them (an EPUB's details, an audiobook's tags), otherwise from its folder and file name</td>
 <td>Yes, for book libraries. <code>UMP_METADATA=off</code> turns it off</td>
 </tr>
 <tr>
 <td><a href="https://books.google.com">Google Books</a> (<code>www.googleapis.com</code>, <code>books.google.com</code>)</td>
 <td>Book details and covers when Open Library has none</td>
-<td>A book title and author</td>
+<td>A book title and author, found the same way</td>
 <td>Yes, as above</td>
 </tr>
 <tr>
-<td>Audible's public catalogue (<code>api.audible.com</code>, covers from <code>m.media-amazon.com</code>)</td>
-<td>Audiobook narrators, length, series, covers</td>
-<td>A title and author</td>
+<td>Audible's catalogue search (<code>api.audible.com</code>, covers from <code>m.media-amazon.com</code>)</td>
+<td>Audiobook narrators, length, series, summary, cover</td>
+<td>The audiobook's title and author as search words: from the tags inside the audiobook file (its title or album, and its author or artist tag) where it has them, otherwise from its folder and file name. Nothing else from the tags (such as the narrator, series or summary) and no picture is sent; for the cover, the picture's address from Audible's own answer. No Audible account or sign-in is used</td>
 <td>Yes, for audiobook libraries, as above</td>
+</tr>
+<tr>
+<td>Audnexus (<code>api.audnex.us</code>)</td>
+<td>Chapter times for audiobooks whose file has none</td>
+<td>Audible's catalogue number (ASIN) for the book, and only when the book was matched on Audible</td>
+<td>Yes, as above</td>
 </tr>
 </tbody>
 </table></div>
 <p>Each service sees the server's internet address, as any website would, and applies its own
 privacy policy. TVmaze's data is used under its CC BY-SA licence and credited in the app. So is
 Metron's (CC BY-SA 4.0): a series page that shows Metron's names says "via Metron", with a link.</p>
-<p><span class="unsure">UNSURE</span> Audible publishes no terms for its catalogue search; the owner should confirm it is
-acceptable to use before release.</p>
+<p><strong><span class="unsure">UNSURE</span> (owner decision):</strong> Audible's catalogue search is not an official, documented service
+for other apps. Audible publishes no developer programme or terms that allow this use, and
+Audnexus serves data that comes from Audible. Whether ODIN keeps using them, and so whether these
+two rows stay in this policy, is undecided: see <code>docs/decisions/2026-11-11-audible-metadata.md</code>.</p>
 <p><strong>Email.</strong> If the owner sets up email (<code>UMP_SMTP_*</code>), invitation emails are sent through the
 <strong>owner's own</strong> mail account (for example their Gmail). The invitation contains the server
 address and a one-time code. Without email set up, the owner sends the invitation by hand.</p>
@@ -171,10 +227,17 @@ address and a one-time code. Without email set up, the owner sends the invitatio
 themselves and copy it to the server. The server does not download it or contact Cisco.</p>
 <p>The server does not contact Outland Dynamics for licences, updates or anything else.</p>
 <h2>Reporting a problem</h2>
-<p>"Report a problem" (in About ODIN) opens <strong>your own email app</strong> with a message you can read and
-edit before sending. It includes the app and server versions and your phone's operating system.
-For the server owner it also includes a diagnostics summary (disk space, backups, scans) without
-passwords, keys or email addresses. Nothing is sent unless you send that email yourself.</p>
+<p>"Report a problem" (in About ODIN, and on the "Something went wrong" screen) opens <strong>your own
+email app</strong> with a message addressed to support@outlanddynamics.com that you can read and edit
+before sending. If the phone has no email app, ODIN shows the address and the same text with a
+Copy button instead. Nothing is sent unless you send that email yourself.</p>
+<p>The message contains the app version and build, the server version, and your phone's system and
+its version. Sent from the "Something went wrong" screen, it also contains the error's name and
+message and the list of app screens involved. For the server owner it also contains a
+diagnostics summary: the server's address, disk space, the media folder locations, library
+names with item counts and last scan results, database size, backup times and transcoding
+status. Passwords, sign-in keys and email addresses are removed from it. When you send it, we
+also receive what any email carries: your email address and whatever you write.</p>
 <h2>Children</h2>
 <p>ODIN is not directed at children under 13, and Outland Dynamics does not knowingly collect data
 from anyone, including children. Whether a child uses ODIN, and what media they can see, is up
@@ -183,7 +246,7 @@ to the server owner and the child's parent or guardian.</p>
 <p>If this policy changes, the new version will be published at the same address with a new date.
 The history of changes is kept in the project's repository.</p>
 <h2>Contact</h2>
-<p>Questions about this policy: <a href="mailto:support@outlanddynamics.com">support@outlanddynamics.com</a>. Questions about
+<p>Questions about this policy: support@outlanddynamics.com. Questions about
 your data on a particular ODIN server go to that server's owner.</p>
 </article></div>
 </main>
