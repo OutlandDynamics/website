@@ -148,15 +148,16 @@ h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; margin
 @media (max-width: 520px) { .product-card { grid-template-columns: 1fr; padding: 22px; } }
 
 /* Outland Dynamics company theme: blue mountain gradient on black (from the company logo) */
-:root { --od-deep: #2b3c8f; --od-mid: #315299; --od-sky: #3a7cc7; --od-glow: #5b9be0; --od-gradient: linear-gradient(115deg, var(--od-deep) 0%, var(--od-mid) 45%, var(--od-sky) 100%); }
-.brand { background: linear-gradient(90deg, #8fb6ec, #cfe0f7); -webkit-background-clip: text; background-clip: text; color: transparent; }
+:root { --od-midnight: #0B1119; --od-slate: #1B2A3B; --od-deep: #0735B4; --od-mid: #087EF4; --od-sky: #40E7F5; --od-glow: #24D4F3; --od-silver: #E6EAF0; --od-gradient: linear-gradient(115deg, var(--od-deep) 0%, var(--od-mid) 55%, #1fb4f2 100%); }
+.brand { line-height: 0; }
+.brand img { width: auto; height: 34px; display: block; }
 .theme-co { --green: var(--od-glow); background: #000; }
 .theme-co a { color: var(--od-glow); }
 .theme-co a:hover { color: #8fbdf0; }
 .theme-co .site-header { background: rgba(0,0,0,.82); border-bottom-color: rgba(91,155,224,.18); }
-.theme-co .company-hero::before { background: radial-gradient(120% 90% at 85% 10%, rgba(58,124,199,.45), transparent 60%), radial-gradient(90% 80% at 10% 100%, rgba(43,60,143,.55), transparent 65%), #000; opacity: 1; }
+.theme-co .company-hero::before { background: radial-gradient(120% 90% at 85% 10%, rgba(8,126,244,.32), transparent 60%), radial-gradient(90% 80% at 10% 100%, rgba(7,53,180,.42), transparent 65%), url(assets/od-hero.jpg) center/cover, var(--od-midnight); opacity: 1; }
 .theme-co .company-hero::after { background: linear-gradient(180deg, transparent 60%, #000 100%); }
-.theme-co .company-hero h1 { background: var(--od-gradient); background: linear-gradient(100deg, #6f9fe6 0%, #a9c9f2 55%, #e4eefb 100%); -webkit-background-clip: text; background-clip: text; color: transparent; max-width: 16ch; }
+.theme-co .company-hero h1 { background: linear-gradient(100deg, #6fc3ff 0%, #b9e6ff 55%, #F0F3F7 100%); -webkit-background-clip: text; background-clip: text; color: transparent; max-width: 16ch; }
 .theme-co .eyebrow { color: var(--od-glow); }
 .theme-co .btn-primary { background: var(--od-gradient); color: #fff; }
 .theme-co .btn-primary:hover { background: linear-gradient(115deg, #3549a8, #3a63b0, #4a8ad6); color: #fff; }
@@ -188,3 +189,11 @@ h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; margin
 .prose pre code { background: none; padding: 0; overflow-wrap: normal; white-space: pre; }
 .note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--green); border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 20px 0; font-size: 15px; }
 @media (max-width: 520px) { .steps > li { padding-left: 46px; } }
+
+/* Outland Dynamics brand kit (2026-11-15) */
+.company-logo { display: block; width: min(440px, 78vw); height: auto; margin: 0 0 28px; filter: drop-shadow(0 6px 28px rgba(8,126,244,.28)); }
+.theme-co .btn-primary:hover { background: linear-gradient(115deg, #0a43cc, #2a93ff, #3cc6f5); color: #fff; }
+.theme-co a:hover { color: #7fe3f7; }
+.theme-co .product-card { background: var(--od-midnight); border-color: var(--od-slate); }
+.theme-co .site-header { background: rgba(11,17,25,.86); border-bottom-color: rgba(36,212,243,.16); }
+@media (max-width: 520px) { .brand img { height: 24px; } }
