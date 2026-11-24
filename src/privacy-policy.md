@@ -1,4 +1,4 @@
-# ODIN privacy policy
+# FullShelf privacy policy
 
 > **Draft — needs the owner's review before publishing; not legal advice.**
 > Items marked **UNSURE** could not be confirmed from the code and need a decision or a check.
@@ -7,10 +7,10 @@ Last updated: UNSURE (set the date when the owner publishes this).
 
 ## The short version
 
-- **Outland Dynamics runs no servers for ODIN and collects nothing about you.** We have no
+- **Outland Dynamics runs no servers for FullShelf and collects nothing about you.** We have no
   accounts, no analytics, no advertising, no tracking and no crash-reporting service.
-- The ODIN app talks to **one place: the ODIN server you (or the person who invited you) run**,
-  for example on a home NAS. Everything ODIN knows about you is stored on that server or on your
+- The FullShelf app talks to **one place: the FullShelf server you (or the person who invited you) run**,
+  for example on a home NAS. Everything FullShelf knows about you is stored on that server or on your
   phone, not with us.
 - That server may look up public information about your **titles** (show and movie names, book
   titles and authors) from a few public catalogues, so it can show posters, summaries and cast.
@@ -19,7 +19,7 @@ Last updated: UNSURE (set the date when the owner publishes this).
 
 ## Who we are
 
-ODIN is made by Outland Dynamics. You buy the app once through Apple's App Store or Google Play;
+FullShelf is made by Outland Dynamics. You buy the app once through Apple's App Store or Google Play;
 the payment is handled by Apple or Google under their own privacy policies. We do not receive
 your card details.
 
@@ -49,7 +49,7 @@ sites never see your phone's internet address. Your server keeps copies in its o
 If you tap a link in the app (for example "TVmaze", a book's source page, the install guide or
 this policy), it opens in your browser and that website's own privacy policy applies.
 
-## What your ODIN server stores
+## What your FullShelf server stores
 
 The server belongs to its owner, not to us. It keeps its data in its own database and data
 folder on the machine it runs on (typically two Docker volumes on a NAS), plus any backups the
@@ -93,7 +93,7 @@ only once at least three people have rated an item, so one person's exact score 
   deletes exactly the same data.
 - **On your phone:** notes, bookmarks, your watchlist and other lists kept only on the phone
   are deleted when you delete the app.
-- The **server owner** cannot delete their own account in the app; to remove ODIN and all its
+- The **server owner** cannot delete their own account in the app; to remove FullShelf and all its
   data, they follow the install guide's Uninstall section.
 - **UNSURE:** copies in backups the owner already made, and lines in the server's console log,
   are not removed by deleting an account; they go when the owner deletes or replaces those
@@ -132,15 +132,15 @@ The server does not contact Outland Dynamics for licences, updates or anything e
 
 ## Reporting a problem
 
-"Report a problem" (in About ODIN) opens **your own email app** with a message you can read and
+"Report a problem" (in About FullShelf) opens **your own email app** with a message you can read and
 edit before sending. It includes the app and server versions and your phone's operating system.
 For the server owner it also includes a diagnostics summary (disk space, backups, scans) without
 passwords, keys or email addresses. Nothing is sent unless you send that email yourself.
 
 ## Children
 
-ODIN is not directed at children under 13, and Outland Dynamics does not knowingly collect data
-from anyone, including children. Whether a child uses ODIN, and what media they can see, is up
+FullShelf is not directed at children under 13, and Outland Dynamics does not knowingly collect data
+from anyone, including children. Whether a child uses FullShelf, and what media they can see, is up
 to the server owner and the child's parent or guardian.
 
 ## Changes to this policy
@@ -151,4 +151,4 @@ The history of changes is kept in the project's repository.
 ## Contact
 
 Questions about this policy: UNSURE (contact address to be added by the owner). Questions about
-your data on a particular ODIN server go to that server's owner.
+your data on a particular FullShelf server go to that server's owner.
