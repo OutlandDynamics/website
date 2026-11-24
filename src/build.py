@@ -26,7 +26,7 @@ def page(title, desc, current, body, theme="odin"):
 <body class="theme-{theme}">
 <header class="site-header"><div class="wrap">
   <a class="brand" href="index.html">OUTLAND DYNAMICS</a>
-  <nav aria-label="Main">{link("index.html", "Home")}{link("odin.html", "ODIN")}{link("install.html", "Install")}{link("support.html", "Support")}{link("privacy.html", "Privacy")}</nav>
+  <nav aria-label="Main">{link("index.html", "Home")}{link("fullshelf.html", "FullShelf")}{link("install.html", "Install")}{link("support.html", "Support")}{link("privacy.html", "Privacy")}</nav>
 </div></header>
 <main>
 {body}
@@ -58,8 +58,8 @@ html = html.replace("<table>", '<div class="table-scroll"><table>').replace("</t
 html = re.sub(r"<strong>UNSURE:?</strong>:?|UNSURE:?", '<span class="unsure">UNSURE</span>', html)
 unsure_count = html.count('class="unsure"')
 privacy = f"""<div class="page-head"><div class="wrap">
-  <h1>ODIN privacy policy</h1>
-  <p>How the ODIN app and server handle your information.</p>
+  <h1>FullShelf privacy policy</h1>
+  <p>How the FullShelf app and server handle your information.</p>
   <div class="draft-banner">Draft for review: {unsure_count} items marked UNSURE need a decision before this page goes live.</div>
 </div></div>
 <div class="wrap"><article class="prose">
@@ -68,9 +68,22 @@ privacy = f"""<div class="page-head"><div class="wrap">
 
 out.mkdir(parents=True, exist_ok=True)
 (out / "index.html").write_text(page("Outland Dynamics", "Outland Dynamics is an independent technology company in Fort Collins, Colorado, making things you own outright: software today, with games and hardware to come.", "index.html", company, theme="co"))
-(out / "odin.html").write_text(page("ODIN · Outland Dynamics", "ODIN is one app for the movies, TV, comics, books and music you own, played from your own server. Your world. Your network. Your rules.", "odin.html", home))
-(out / "install.html").write_text(page("Install ODIN · Outland Dynamics", "How to install ODIN: join a server you were invited to, or set up your own ODIN server at home.", "install.html", install))
-(out / "support.html").write_text(page("ODIN Support · Outland Dynamics", "Help and contact for ODIN, the self-hosted media app from Outland Dynamics.", "support.html", support))
-(out / "privacy.html").write_text(page("ODIN Privacy Policy · Outland Dynamics", "The privacy policy for the ODIN app and server.", "privacy.html", privacy))
+(out / "fullshelf.html").write_text(page("FullShelf · Outland Dynamics", "FullShelf is one app for the movies, TV, comics, books and music you own, played from your own server. Your world. Your network. Your rules.", "fullshelf.html", home))
+# The product page's old address still works: it sends people on.
+(out / "odin.html").write_text("""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FullShelf · Outland Dynamics</title>
+<link rel="canonical" href="https://outlanddynamics.com/fullshelf.html">
+<meta http-equiv="refresh" content="0; url=fullshelf.html">
+<meta name="robots" content="noindex">
+</head>
+<body><p>ODIN is now FullShelf. <a href="fullshelf.html">Go to the FullShelf page</a>.</p></body>
+</html>
+""")
+(out / "install.html").write_text(page("Install FullShelf · Outland Dynamics", "How to install FullShelf: join a server you were invited to, or set up your own FullShelf server at home.", "install.html", install))
+(out / "support.html").write_text(page("FullShelf Support · Outland Dynamics", "Help and contact for FullShelf, the self-hosted media app from Outland Dynamics.", "support.html", support))
+(out / "privacy.html").write_text(page("FullShelf Privacy Policy · Outland Dynamics", "The privacy policy for the FullShelf app and server.", "privacy.html", privacy))
 (out / "CNAME").write_text("outlanddynamics.com\n")
 print("built; UNSURE items in privacy:", unsure_count)
